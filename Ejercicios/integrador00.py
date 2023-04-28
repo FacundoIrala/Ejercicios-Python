@@ -113,7 +113,7 @@ seguir = True
 while seguir == True:
     mostrar_menu()
      
-    respuesta = int(input("Ingrese una opcion"))
+    respuesta = int(input("Ingrese una opcion: "))
 
     match respuesta:
         case 1:
@@ -131,7 +131,7 @@ while seguir == True:
         case 7:
             mostrar_superheroe_menos_peso()
         case 8:
-            mostrar_super_alto_bajo()
+            seguir = False
         case other:
             print("Dato incorrecto")
 

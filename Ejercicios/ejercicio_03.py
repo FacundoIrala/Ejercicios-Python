@@ -31,17 +31,17 @@ edadMinima = 0
 
 while seguir:
 
-    nombre= input("Ingrese nombre")
+    nombre= input("Ingrese nombre: ")
 
-    edad = int(input("Ingrese edad "))
-    while (edad > 13):
+    edad = int(input("Ingrese edad: "))
+    while (int(edad < 13)):
         edad = input("Eror, reingrese su edad mayor a 13")
 
-    genero = input(" Ingrese genero, masculino , femenino o otro")
-    while( genero!= "masculino" and opcion!="femenino" and opcion!="otro" ):
+    genero = input(" Ingrese genero masculino , femenino o otro: ")
+    while( genero!= "masculino" and genero!="femenino" and genero!="otro" ):
         genero = input (("Error, elija  masculino o femenino o otro"))
 
-    opcion = input(" Ingrese nombre participante, Nacho, Julieta o Marcos")
+    opcion = input(" Ingrese nombre participante Nacho, Julieta o Marcos: ")
     while( opcion!= "Nacho" and opcion!="Julieta" and opcion!="Marcos" ):
         opcion = input (("Error, elija  Nacho, Julieta o Marcos"))
     
@@ -60,51 +60,48 @@ while seguir:
         contadorFemenino = contadorFemenino + 1
     else:
         promedioMujeres = 0
+
     
-    if(genero == "masculino" and edad < 25 or edad >40 and opcion != "Marcos"):
-        contadorAntiMarcos= contadorAntiMarcos + 1
-    
+    if genero == "masculino" and edad >= 25 or edad <= 40 and opcion == "Nacho" and opcion == "Julieta":
+        contadorAntiMarcos = contadorAntiMarcos + 1
+   
     if(flag == 0 or opcion == "Nacho" and edad < edadMinima):
         edadMinima = edad
 	    
         nombreJoven = nombre
 	    
         flag = 1
-
-    contadorGeneral = contadorNacho + contadorJulieta + contadorMarcos
-   
+  
     seguir = input ("Desea continuar?")
     if seguir != "si":
             seguir = False
 
+if contadorFemenino >= 1:
+    promedioMujeres= acumuladorFemenino / contadorFemenino
             
 contadorGeneral = contadorNacho + contadorJulieta + contadorMarcos
 
-porcentajeNacho = (contadorNacho * contadorGeneral) / 100
-porcentajeJulieta= (contadorJulieta * contadorGeneral) / 100
-porcentajeMarcos = (contadorMarcos * contadorGeneral) / 100
+porcentajeNacho = (contadorNacho * 100 ) / contadorGeneral
+porcentajeJulieta= (contadorJulieta * 100 ) / contadorGeneral
+porcentajeMarcos = (contadorMarcos * 100 ) / contadorGeneral
 
 
 
 if contadorNacho > contadorJulieta and contadorNacho > contadorMarcos:
-	    participanteMasAtendido = "Nacho"
+    participanteMasAtendido = "Nacho"
 elif contadorJulieta > contadorNacho and contadorJulieta > contadorMarcos:
-        participanteMasAtendido = "Julieta"
+    participanteMasAtendido = "Julieta"
 else:
-	    participanteMasAtendido = "Marcos"
+    participanteMasAtendido = "Marcos"
 
 
-promedioMujeres= acumuladorFemenino / contadorFemenino
+#poner un algoritmo para posiblidad de empate?
 
-print("El nombre del votante es: ",nombre)
-print("La edad del votante es: ",edad)
-print("El genero del votante es: ",genero)
-print("El nombre del participante a cual votaste es: ",opcion)
 print("El promedio de edad de las votantes de género femenino: ",promedioMujeres)
 print("La cantidad de personas de género masculino entre 25 y 40 años que votaron a Nacho o Julieta fue de: ",contadorAntiMarcos)
 print("Nombre del votante más joven que votó a Nacho es: ", nombreJoven)
-print("El participante Nacho obtuvo un porcentaje de votos de: ", porcentajeNacho)
-print("El participante Julieta obtuvo un porcentaje de votos de: ",contadorJulieta )
-print("El participante Marcos obtuvo un porcentaje de votos de: ",contadorMarcos )
+print("El participante Nacho obtuvo un porcentaje de votos de: ", porcentajeNacho," %")
+print("El participante Julieta obtuvo un porcentaje de votos de: ",porcentajeJulieta," %" )
+print("El participante Marcos obtuvo un porcentaje de votos de: ",porcentajeMarcos," %" )
 print("El nombre del participante que gano el  reality es: ",participanteMasAtendido )
 

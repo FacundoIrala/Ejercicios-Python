@@ -17,36 +17,66 @@ C. Informar el tipo de alimento más caro.
 D. El promedio de precio (acumular) por kilo (contador) en total.'''
 
 seguir = True
+contadorKilos = 0
+acumulador_precio = 0
+acumulador_kilos = 0
+precio_Maximo = 0
+flag = 0
+totalConDescuento = 0
+
 
 while seguir:
 
-    peso = int(input("Ingrese peso entre 10 y 100 kilos "))
-    while (peso > 10 or peso < 100):
+    peso = int(input("Ingrese peso entre 10 y 100 kilos: "))
+    while (peso < 10 or peso > 100):
         peso = input("Eror, reingrese peso entre 10 y 100 kilos")
     
-    precio = int(input("Ingrese precio por kilo "))
-    while (precio > 0):
+    precio = int(input("Ingrese precio por kilo: "))
+    while (precio < 0):
         precio = input("Eror, precio por kilo")
-        contadorKilos = contadorKilos + 1
     
-    variedad = input(" Ingrese variedad, vegetal, animal o mezcla")
+    variedad = input(" Ingrese variedad, vegetal, animal o mezcla: ")
     while( variedad!= "vegetal" and variedad!="animal" and variedad!="mezcla" ):
         variedad = input (("Error, Ingrese variedad, vegetal, animal o mezcla"))
 
-    
-    totalBruto = peso * precio
 
-    if(peso > 100):
-        descuento = (totalBruto * 15) / 100
-        totalConDescuento = totalBruto - descuento
-    elif(peso > 300):
-        descuento = (totalBruto * 25) / 100
-        totalConDescuento = totalBruto - descuento
+    acumulador_precio += precio
+    acumulador_kilos += peso
 
-    
+    if flag == 0 or precio > precio_Maximo:
 
-    seguir = input ("Desea continuar?")
+        precio_Maximo = precio
+	    
+        nombre_Alimento = variedad
+	    
+        flag = 1
+
+    contadorKilos = contadorKilos + 1
+
+    seguir = input ("Desea continuar? ")
     if seguir != "si":
             seguir = False
     
-    
+
+totalBruto = acumulador_precio * acumulador_kilos
+
+promedio_Precio_Kilo = acumulador_precio / contadorKilos
+
+
+if(acumulador_kilos > 100):
+
+    descuento = (totalBruto * 15) / 100
+
+    totalConDescuento = totalBruto - descuento
+
+elif(acumulador_kilos > 300):
+
+    descuento = (totalBruto * 25) / 100
+
+    totalConDescuento = totalBruto - descuento
+
+print(f"El importe total a pagar, BRUTO sin descuento es de: {totalBruto}")
+print(f"El importe total a pagar con descuento es de: {totalConDescuento}")
+print(f"El alimento mas caro es: {nombre_Alimento}")
+print(f"El promedio de precio por kilo en total es: {promedio_Precio_Kilo}")
+
